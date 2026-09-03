@@ -57,23 +57,42 @@ if ($script_slug === 'blog-post') { $script_slug = 'blog'; }
             </span>
         </a>
 
-        <nav class="main-nav" id="main-nav">
+        <nav class="main-nav" id="main-nav" aria-label="Primary">
+            <div class="main-nav-head">
+                <span class="main-nav-title">Menu</span>
+                <button class="nav-close" id="nav-close" aria-label="Close menu">
+                    <?php echo icon('close'); ?>
+                </button>
+            </div>
             <ul>
                 <?php foreach ($GLOBALS['nav_links'] as $href => $label):
+                    // Same-page anchors (e.g. /#services) never get the "current
+                    // page" highlight — only a real page href (/, /blog, /events) can.
+                    $has_anchor = (strpos($href, '#') !== false);
                     $href_slug = trim(explode('#', $href)[0], '/');
-                    $is_current = ($href_slug === $script_slug);
+                    $is_current = (!$has_anchor && $href_slug === $script_slug);
                 ?>
                 <li><a href="<?php echo $href; ?>" class="<?php echo $is_current ? 'active' : ''; ?>"><?php echo $label; ?></a></li>
                 <?php endforeach; ?>
             </ul>
+            <div class="nav-drawer-cta">
+                <a href="https://wa.me/<?php echo CONTACT_WHATSAPP; ?>?text=Hi%20Ngalo%2C%20I%27d%20like%20to%20ask%20about..." class="btn btn-whatsapp btn-block" target="_blank" rel="noopener">
+                    <?php echo icon('whatsapp'); ?> Chat on WhatsApp
+                </a>
+                <a href="tel:<?php echo str_replace(' ', '', CONTACT_PHONE_1); ?>" class="nav-drawer-phone">
+                    <?php echo icon('phone'); ?> <?php echo CONTACT_PHONE_1; ?>
+                </a>
+            </div>
         </nav>
 
         <a href="https://wa.me/<?php echo CONTACT_WHATSAPP; ?>?text=Hi%20Ngalo%2C%20I%27d%20like%20to%20ask%20about..." class="btn btn-whatsapp header-cta" target="_blank" rel="noopener">
             <?php echo icon('whatsapp'); ?> Chat on WhatsApp
         </a>
 
-        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
             <span></span><span></span><span></span>
         </button>
     </div>
 </header>
+
+<div class="nav-backdrop" id="nav-backdrop"></div>
