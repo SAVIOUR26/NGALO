@@ -124,8 +124,29 @@ p { margin: 0 0 1em; color: var(--muted); }
 .main-nav a::after { content: ''; position: absolute; left: 0; bottom: 0; height: 2px; width: 0; background: var(--teal-600); transition: width .25s ease; }
 .main-nav a:hover::after, .main-nav a.active::after { width: 100%; }
 .header-cta { margin-left: 6px; }
-.nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; background: none; border: none; cursor: pointer; margin-left: 8px; }
-.nav-toggle span { display: block; height: 2px; background: var(--navy-800); border-radius: 2px; transition: transform .25s ease, opacity .25s ease; }
+.nav-toggle {
+    display: none; position: relative; z-index: 101;
+    flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+    width: 44px; height: 44px; border-radius: 50%; background: none; border: none; cursor: pointer; margin-left: 4px;
+    transition: background .2s ease, opacity .2s ease;
+}
+.nav-toggle:hover, .nav-toggle:focus-visible { background: var(--off-white); }
+.nav-toggle span { display: block; width: 20px; height: 2px; background: var(--navy-800); border-radius: 2px; transition: transform .25s ease, opacity .25s ease; }
+
+.main-nav-head, .nav-close, .nav-drawer-cta { display: none; }
+
+.nav-backdrop {
+    position: fixed; inset: 0; z-index: 95;
+    background: rgba(11,31,56,.55);
+    opacity: 0; visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+}
+.nav-backdrop.is-open { opacity: 1; visibility: visible; }
+
+/* Hide the floating WhatsApp bubble and back-to-top while the drawer (which
+   has its own WhatsApp CTA) is open, so they don't overlap it. */
+body.nav-is-open .whatsapp-float,
+body.nav-is-open #back-to-top { opacity: 0; visibility: hidden; pointer-events: none; }
 
 /* ---------- Hero ---------- */
 .hero { position: relative; min-height: 92vh; display: flex; align-items: center; overflow: hidden; color: var(--white); }
@@ -293,7 +314,7 @@ p { margin: 0 0 1em; color: var(--muted); }
     background: #25D366; color: var(--white);
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 8px 26px rgba(37, 211, 102, .5);
-    transition: transform .2s ease;
+    transition: transform .2s ease, opacity .25s ease, visibility .25s ease;
 }
 .whatsapp-float:hover { transform: scale(1.08); }
 .whatsapp-float .icon-lg { width: 30px; height: 30px; }
@@ -351,19 +372,51 @@ p { margin: 0 0 1em; color: var(--muted); }
 
 @media (max-width: 860px) {
     .topbar-contact a:nth-child(2) { display: none; }
+
     .main-nav {
-        position: fixed; top: 0; right: 0; height: 100vh; width: min(320px, 82vw);
+        position: fixed; top: 0; right: 0; height: 100dvh; width: min(340px, 85vw);
+        display: flex; flex-direction: column;
         background: var(--white); box-shadow: var(--shadow-lg);
-        transform: translateX(100%); transition: transform .3s ease;
-        padding: 100px 30px 30px; z-index: 99;
+        transform: translateX(100%); transition: transform .32s cubic-bezier(.4,0,.2,1);
+        padding: 18px 26px 28px; z-index: 99; overflow-y: auto;
     }
     .main-nav.is-open { transform: translateX(0); }
-    .main-nav ul { flex-direction: column; gap: 22px; }
+
+    .main-nav-head {
+        display: flex; align-items: center; justify-content: space-between;
+        padding-bottom: 16px; margin-bottom: 12px; border-bottom: 1px solid var(--border);
+    }
+    .main-nav-title { font-family: var(--font-head); font-weight: 700; font-size: 1rem; color: var(--navy-800); }
+    .nav-close {
+        display: flex; align-items: center; justify-content: center;
+        width: 40px; height: 40px; border-radius: 50%; background: var(--off-white); border: none; cursor: pointer; color: var(--navy-800);
+        transition: background .2s ease, color .2s ease;
+    }
+    .nav-close .icon { width: 18px; height: 18px; }
+    .nav-close:hover { background: var(--teal-100); color: var(--teal-700); }
+
+    .main-nav ul { flex-direction: column; gap: 4px; }
+    .main-nav a {
+        display: block; padding: 13px 14px; border-radius: 10px;
+        font-size: 1rem;
+    }
+    .main-nav a::after { display: none; }
+    .main-nav a:hover { background: var(--off-white); }
+    .main-nav a.active { background: var(--teal-100); color: var(--teal-700); }
+
+    .nav-drawer-cta { display: flex; flex-direction: column; gap: 14px; margin-top: auto; padding-top: 22px; border-top: 1px solid var(--border); }
+    .nav-drawer-phone {
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+        font-family: var(--font-head); font-weight: 600; font-size: .92rem; color: var(--navy-800);
+    }
+    .nav-drawer-phone .icon { width: 17px; height: 17px; color: var(--teal-600); }
+
     .header-cta { display: none; }
     .nav-toggle { display: flex; }
-    .nav-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .nav-toggle.is-open span:nth-child(2) { opacity: 0; }
-    .nav-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    /* The drawer has its own close (X) button in the same corner once open,
+       so step the hamburger out of the way rather than stacking two controls. */
+    .main-nav.is-open ~ .nav-toggle { opacity: 0; pointer-events: none; }
+
     .section { padding: 70px 0; }
     .form-row { grid-template-columns: 1fr; }
     .cta-banner-inner { text-align: center; justify-content: center; }

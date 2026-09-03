@@ -1,21 +1,43 @@
 (function () {
     'use strict';
 
-    /* Mobile nav toggle */
+    /* Mobile nav drawer */
     var toggle = document.getElementById('nav-toggle');
+    var closeBtn = document.getElementById('nav-close');
     var nav = document.getElementById('main-nav');
-    if (toggle && nav) {
+    var backdrop = document.getElementById('nav-backdrop');
+    if (toggle && nav && backdrop) {
+        var openMenu = function () {
+            nav.classList.add('is-open');
+            toggle.classList.add('is-open');
+            backdrop.classList.add('is-open');
+            document.body.classList.add('nav-is-open');
+            toggle.setAttribute('aria-expanded', 'true');
+            toggle.setAttribute('aria-label', 'Close menu');
+            document.body.style.overflow = 'hidden';
+        };
+        var closeMenu = function () {
+            nav.classList.remove('is-open');
+            toggle.classList.remove('is-open');
+            backdrop.classList.remove('is-open');
+            document.body.classList.remove('nav-is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.setAttribute('aria-label', 'Open menu');
+            document.body.style.overflow = '';
+        };
         toggle.addEventListener('click', function () {
-            var open = nav.classList.toggle('is-open');
-            toggle.classList.toggle('is-open', open);
-            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (nav.classList.contains('is-open')) closeMenu(); else openMenu();
         });
+        if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+        backdrop.addEventListener('click', closeMenu);
         nav.querySelectorAll('a').forEach(function (link) {
-            link.addEventListener('click', function () {
-                nav.classList.remove('is-open');
-                toggle.classList.remove('is-open');
-                toggle.setAttribute('aria-expanded', 'false');
-            });
+            link.addEventListener('click', closeMenu);
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && nav.classList.contains('is-open')) closeMenu();
+        });
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 860 && nav.classList.contains('is-open')) closeMenu();
         });
     }
 
