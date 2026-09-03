@@ -1,0 +1,77 @@
+<?php
+if (!defined('SITE_NAME')) {
+    require_once __DIR__ . '/config.php';
+}
+require_once __DIR__ . '/icons.php';
+$page_title = $page_title ?? SITE_NAME . ' | ' . SITE_TAGLINE;
+$meta_description = $meta_description ?? SITE_DESCRIPTION;
+$current_page = basename($_SERVER['PHP_SELF']);
+?><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><?php echo htmlspecialchars($page_title); ?></title>
+<meta name="description" content="<?php echo htmlspecialchars($meta_description); ?>">
+<meta name="theme-color" content="#0f2a4a">
+
+<meta property="og:title" content="<?php echo htmlspecialchars($page_title); ?>">
+<meta property="og:description" content="<?php echo htmlspecialchars($meta_description); ?>">
+<meta property="og:type" content="website">
+<meta property="og:image" content="<?php echo SITE_URL; ?>/assets/img/hero.jpg">
+
+<link rel="icon" type="image/jpeg" href="assets/img/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="topbar">
+    <div class="container topbar-inner">
+        <div class="topbar-contact">
+            <a href="tel:<?php echo str_replace(' ', '', CONTACT_PHONE_1); ?>"><?php echo icon('phone'); ?><?php echo CONTACT_PHONE_1; ?></a>
+            <a href="mailto:<?php echo CONTACT_EMAIL; ?>" class="topbar-email"><?php echo icon('mail'); ?><?php echo CONTACT_EMAIL; ?></a>
+        </div>
+        <div class="topbar-social">
+            <a href="<?php echo SOCIAL_FACEBOOK; ?>" aria-label="Facebook" target="_blank" rel="noopener"><?php echo icon('facebook'); ?></a>
+            <a href="<?php echo SOCIAL_INSTAGRAM; ?>" aria-label="Instagram" target="_blank" rel="noopener"><?php echo icon('instagram'); ?></a>
+            <a href="<?php echo SOCIAL_TWITTER; ?>" aria-label="Twitter" target="_blank" rel="noopener"><?php echo icon('twitter'); ?></a>
+        </div>
+    </div>
+</div>
+
+<header class="site-header" id="site-header">
+    <div class="container header-inner">
+        <a href="index.php" class="brand">
+            <img src="assets/img/logo.jpg" alt="<?php echo SITE_NAME; ?> logo" class="brand-logo">
+            <span class="brand-text">
+                <span class="brand-name">Ngalo</span>
+                <span class="brand-sub">Mobile Cycling Services</span>
+            </span>
+        </a>
+
+        <nav class="main-nav" id="main-nav">
+            <ul>
+                <?php foreach ($GLOBALS['nav_links'] as $href => $label):
+                    $is_active = ($current_page === explode('#', $href)[0]) && (
+                        ($current_page === 'index.php' && $href === 'index.php' && empty($_SERVER['QUERY_STRING']) )
+                        || $current_page !== 'index.php'
+                    );
+                    $is_current = (strpos($href, $current_page) === 0);
+                ?>
+                <li><a href="<?php echo $href; ?>" class="<?php echo $is_current ? 'active' : ''; ?>"><?php echo $label; ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+        </nav>
+
+        <a href="https://wa.me/<?php echo CONTACT_WHATSAPP; ?>?text=Hi%20Ngalo%2C%20I%27d%20like%20to%20ask%20about..." class="btn btn-whatsapp header-cta" target="_blank" rel="noopener">
+            <?php echo icon('whatsapp'); ?> Chat on WhatsApp
+        </a>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
