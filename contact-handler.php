@@ -6,7 +6,7 @@
 require_once __DIR__ . '/includes/config.php';
 
 function redirect_with_status($status) {
-    header('Location: index.php?contact=' . $status . '#contact');
+    header('Location: /?contact=' . $status . '#contact');
     exit;
 }
 

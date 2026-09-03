@@ -14,7 +14,7 @@ if (!$post) {
     require_once __DIR__ . '/includes/header.php';
     echo '<section class="section"><div class="container" style="text-align:center;padding:4rem 0;">';
     echo '<h1>Post Not Found</h1><p>Sorry, we couldn\'t find that article.</p>';
-    echo '<a class="btn btn-primary" href="blog.php">Back to Blog</a></div></section>';
+    echo '<a class="btn btn-primary" href="/blog">Back to Blog</a></div></section>';
     require_once __DIR__ . '/includes/footer.php';
     exit;
 }
@@ -31,7 +31,7 @@ $others = array_slice($others, 0, 2);
 <section class="page-hero">
     <div class="page-hero-media"><img src="<?php echo $post['image']; ?>" alt="<?php echo htmlspecialchars($post['title']); ?>"></div>
     <div class="container page-hero-content reveal">
-        <p class="eyebrow"><a href="blog.php" class="crumb-link">Blog</a> / Article</p>
+        <p class="eyebrow"><a href="/blog" class="crumb-link">Blog</a> / Article</p>
         <h1><?php echo htmlspecialchars($post['title']); ?></h1>
         <p class="post-meta-line"><?php echo icon('calendar'); ?><?php echo date('F j, Y', strtotime($post['date'])); ?> &nbsp;&middot;&nbsp; By <?php echo htmlspecialchars($post['author']); ?></p>
     </div>
@@ -52,14 +52,14 @@ $others = array_slice($others, 0, 2);
             <div class="sidebar-card">
                 <h4>Need a service?</h4>
                 <p>Book a workshop or at-home repair, or ask us about bike sales, rentals and tours.</p>
-                <a href="index.php#contact" class="btn btn-outline btn-block">Contact Us</a>
+                <a href="/#contact" class="btn btn-outline btn-block">Contact Us</a>
             </div>
             <div class="sidebar-card">
                 <h4>More Reading</h4>
                 <ul class="sidebar-list">
                     <?php foreach ($others as $o): ?>
                     <li>
-                        <a href="blog-post.php?slug=<?php echo urlencode($o['slug']); ?>">
+                        <a href="/blog/<?php echo urlencode($o['slug']); ?>">
                             <img src="<?php echo $o['image']; ?>" alt="">
                             <span><?php echo htmlspecialchars($o['title']); ?></span>
                         </a>

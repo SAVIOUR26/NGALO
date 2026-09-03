@@ -13,7 +13,7 @@ require_once __DIR__ . '/includes/header.php';
 <!-- ============ HERO ============ -->
 <section class="hero" id="home">
     <div class="hero-media">
-        <img src="assets/img/hero.jpg" alt="Ngalo cycling group riding a forest trail" loading="eager">
+        <img src="/assets/img/hero.jpg" alt="Ngalo cycling group riding a forest trail" loading="eager">
         <div class="hero-overlay"></div>
     </div>
     <div class="container hero-content">
@@ -37,7 +37,7 @@ require_once __DIR__ . '/includes/header.php';
 <section class="section about" id="about">
     <div class="container about-grid">
         <div class="about-media reveal">
-            <img src="assets/img/about.jpg" alt="Ngalo mechanic servicing a bicycle wheel" loading="lazy">
+            <img src="/assets/img/about.jpg" alt="Ngalo mechanic servicing a bicycle wheel" loading="lazy">
             <div class="about-media-badge">
                 <?php echo icon('wrench'); ?>
                 <div><strong>Trained</strong><span>Mechanics</span></div>
@@ -55,7 +55,7 @@ require_once __DIR__ . '/includes/header.php';
             </ul>
             <div class="about-actions">
                 <a href="#services" class="btn btn-primary">Our Services</a>
-                <a href="index.php#contact" class="btn btn-outline">Visit Our Workshop</a>
+                <a href="/#contact" class="btn btn-outline">Visit Our Workshop</a>
             </div>
         </div>
     </div>
@@ -98,14 +98,14 @@ require_once __DIR__ . '/includes/header.php';
         <div class="gallery-grid">
             <?php
             $gallery_images = [
-                ['src' => 'assets/img/gallery-1.jpg', 'alt' => 'Mechanic fitting a wheel for a customer'],
-                ['src' => 'assets/img/service-tours.jpg', 'alt' => 'Group cycling tour on a dirt road'],
-                ['src' => 'assets/img/gallery-3.jpg', 'alt' => 'Mechanic servicing a bike on a repair stand'],
-                ['src' => 'assets/img/gallery-4.jpg', 'alt' => 'Workshop bicycle wheel service'],
-                ['src' => 'assets/img/service-bike-sales.jpg', 'alt' => 'Wall of bicycles ready for sale'],
-                ['src' => 'assets/img/gallery-6.jpg', 'alt' => 'At-home bicycle repair'],
-                ['src' => 'assets/img/gallery-7.jpg', 'alt' => 'Bikes loaded for a cycling tour'],
-                ['src' => 'assets/img/service-corporate.jpg', 'alt' => 'Group ride through a forest trail'],
+                ['src' => '/assets/img/gallery-1.jpg', 'alt' => 'Mechanic fitting a wheel for a customer'],
+                ['src' => '/assets/img/service-tours.jpg', 'alt' => 'Group cycling tour on a dirt road'],
+                ['src' => '/assets/img/gallery-3.jpg', 'alt' => 'Mechanic servicing a bike on a repair stand'],
+                ['src' => '/assets/img/gallery-4.jpg', 'alt' => 'Workshop bicycle wheel service'],
+                ['src' => '/assets/img/service-bike-sales.jpg', 'alt' => 'Wall of bicycles ready for sale'],
+                ['src' => '/assets/img/gallery-6.jpg', 'alt' => 'At-home bicycle repair'],
+                ['src' => '/assets/img/gallery-7.jpg', 'alt' => 'Bikes loaded for a cycling tour'],
+                ['src' => '/assets/img/service-corporate.jpg', 'alt' => 'Group ride through a forest trail'],
             ];
             foreach ($gallery_images as $i => $g): ?>
             <button type="button" class="gallery-item reveal" data-full="<?php echo $g['src']; ?>" data-caption="<?php echo htmlspecialchars($g['alt']); ?>" style="transition-delay:<?php echo ($i % 4) * 70; ?>ms">
@@ -125,19 +125,19 @@ require_once __DIR__ . '/includes/header.php';
                 <p class="eyebrow">From The Blog</p>
                 <h2>Tips, stories &amp; rides worth reading</h2>
             </div>
-            <a href="blog.php" class="btn btn-outline">View All Posts <?php echo icon('arrow-right'); ?></a>
+            <a href="/blog" class="btn btn-outline">View All Posts <?php echo icon('arrow-right'); ?></a>
         </div>
         <div class="card-grid">
             <?php foreach (array_slice($GLOBALS['blog_posts'], 0, 3) as $i => $post): ?>
             <article class="post-card reveal" style="transition-delay:<?php echo $i * 90; ?>ms">
-                <a href="blog-post.php?slug=<?php echo urlencode($post['slug']); ?>" class="post-card-img">
+                <a href="/blog/<?php echo urlencode($post['slug']); ?>" class="post-card-img">
                     <img src="<?php echo $post['image']; ?>" alt="<?php echo htmlspecialchars($post['title']); ?>" loading="lazy">
                 </a>
                 <div class="post-card-body">
                     <span class="post-date"><?php echo icon('calendar'); ?><?php echo date('F j, Y', strtotime($post['date'])); ?></span>
-                    <h3><a href="blog-post.php?slug=<?php echo urlencode($post['slug']); ?>"><?php echo htmlspecialchars($post['title']); ?></a></h3>
+                    <h3><a href="/blog/<?php echo urlencode($post['slug']); ?>"><?php echo htmlspecialchars($post['title']); ?></a></h3>
                     <p><?php echo htmlspecialchars($post['excerpt']); ?></p>
-                    <a href="blog-post.php?slug=<?php echo urlencode($post['slug']); ?>" class="service-link">Read More <?php echo icon('arrow-right'); ?></a>
+                    <a href="/blog/<?php echo urlencode($post['slug']); ?>" class="service-link">Read More <?php echo icon('arrow-right'); ?></a>
                 </div>
             </article>
             <?php endforeach; ?>
@@ -153,7 +153,7 @@ require_once __DIR__ . '/includes/header.php';
                 <p class="eyebrow">What's On</p>
                 <h2>Upcoming rides &amp; events</h2>
             </div>
-            <a href="events.php" class="btn btn-outline">View All Events <?php echo icon('arrow-right'); ?></a>
+            <a href="/events" class="btn btn-outline">View All Events <?php echo icon('arrow-right'); ?></a>
         </div>
         <div class="card-grid">
             <?php
@@ -226,7 +226,7 @@ require_once __DIR__ . '/includes/header.php';
                 </div>
             </div>
 
-            <form class="contact-form reveal" action="contact-handler.php" method="POST" id="contact-form">
+            <form class="contact-form reveal" action="/contact-handler.php" method="POST" id="contact-form">
                 <?php if ($contact_status === 'success'): ?>
                     <div class="form-alert form-alert-success"><?php echo icon('check'); ?> Thanks! Your message has been sent — we'll get back to you shortly.</div>
                 <?php elseif ($contact_status === 'error'): ?>
