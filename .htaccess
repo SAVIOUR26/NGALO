@@ -1,0 +1,27 @@
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# --- Canonical URLs: send browsers from *.php URLs to the clean version ---
+
+# /index.php  ->  /
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php[?\s] [NC]
+RewriteRule ^index\.php$ / [R=301,L]
+
+# /any-page.php  ->  /any-page  (keeps any query string)
+RewriteCond %{THE_REQUEST} \s/+([^.\s]+)\.php[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# --- Pretty blog permalinks: /blog/some-post-slug -> blog-post.php?slug=some-post-slug ---
+RewriteRule ^blog/([A-Za-z0-9-]+)/?$ blog-post.php?slug=$1 [L,QSA]
+
+# --- Serve clean URLs from their matching .php file ---
+# /about -> about.php, /blog -> blog.php, /events -> events.php, etc.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^/]+)/?$ $1.php [L]
+</IfModule>
+
+# --- Never let anyone browse folders directly ---
+Options -Indexes

@@ -14,7 +14,7 @@ $past     = array_filter($events, fn($e) => $e['status'] === 'past');
 ?>
 
 <section class="page-hero">
-    <div class="page-hero-media"><img src="assets/img/service-tours.jpg" alt="Ngalo cycling tour group"></div>
+    <div class="page-hero-media"><img src="/assets/img/service-tours.jpg" alt="Ngalo cycling tour group"></div>
     <div class="container page-hero-content reveal">
         <p class="eyebrow">What's On</p>
         <h1>Rides &amp; Events</h1>

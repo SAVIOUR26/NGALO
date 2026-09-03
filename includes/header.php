@@ -5,7 +5,12 @@ if (!defined('SITE_NAME')) {
 require_once __DIR__ . '/icons.php';
 $page_title = $page_title ?? SITE_NAME . ' | ' . SITE_TAGLINE;
 $meta_description = $meta_description ?? SITE_DESCRIPTION;
-$current_page = basename($_SERVER['PHP_SELF']);
+
+// Slug of the PHP script actually running, regardless of the pretty URL
+// (e.g. /blog or /blog/some-post) that mod_rewrite mapped to it.
+$script_slug = preg_replace('/\.php$/', '', basename($_SERVER['PHP_SELF']));
+if ($script_slug === 'index') { $script_slug = ''; }
+if ($script_slug === 'blog-post') { $script_slug = 'blog'; }
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,11 +25,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
 <meta property="og:type" content="website">
 <meta property="og:image" content="<?php echo SITE_URL; ?>/assets/img/hero.jpg">
 
-<link rel="icon" type="image/jpeg" href="assets/img/logo.jpg">
+<link rel="icon" type="image/jpeg" href="/assets/img/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
 
@@ -44,8 +49,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 <header class="site-header" id="site-header">
     <div class="container header-inner">
-        <a href="index.php" class="brand">
-            <img src="assets/img/logo.jpg" alt="<?php echo SITE_NAME; ?> logo" class="brand-logo">
+        <a href="/" class="brand">
+            <img src="/assets/img/logo.jpg" alt="<?php echo SITE_NAME; ?> logo" class="brand-logo">
             <span class="brand-text">
                 <span class="brand-name">Ngalo</span>
                 <span class="brand-sub">Mobile Cycling Services</span>
@@ -55,11 +60,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <nav class="main-nav" id="main-nav">
             <ul>
                 <?php foreach ($GLOBALS['nav_links'] as $href => $label):
-                    $is_active = ($current_page === explode('#', $href)[0]) && (
-                        ($current_page === 'index.php' && $href === 'index.php' && empty($_SERVER['QUERY_STRING']) )
-                        || $current_page !== 'index.php'
-                    );
-                    $is_current = (strpos($href, $current_page) === 0);
+                    $href_slug = trim(explode('#', $href)[0], '/');
+                    $is_current = ($href_slug === $script_slug);
                 ?>
                 <li><a href="<?php echo $href; ?>" class="<?php echo $is_current ? 'active' : ''; ?>"><?php echo $label; ?></a></li>
                 <?php endforeach; ?>

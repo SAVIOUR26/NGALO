@@ -24,13 +24,13 @@ define('BASE_PATH', '');
 
 /** Primary navigation. Anchors point at sections on the home page. */
 $GLOBALS['nav_links'] = [
-    'index.php'              => 'Home',
-    'index.php#about'        => 'About',
-    'index.php#services'     => 'Services',
-    'index.php#gallery'      => 'Gallery',
-    'blog.php'                => 'Blog',
-    'events.php'               => 'Events',
-    'index.php#contact'      => 'Contact',
+    '/'           => 'Home',
+    '/#about'     => 'About',
+    '/#services'  => 'Services',
+    '/#gallery'   => 'Gallery',
+    '/blog'       => 'Blog',
+    '/events'     => 'Events',
+    '/#contact'   => 'Contact',
 ];
 
 /** Services offered, sourced from the workshop's own service board. */
@@ -38,43 +38,43 @@ $GLOBALS['services'] = [
     [
         'title' => 'Bicycle Repairs at Workshop',
         'desc'  => 'Full diagnostic and repair service at our Kulambiro workshop — gears, brakes, wheels, drivetrains and more, handled by trained mechanics.',
-        'img'   => 'assets/img/service-workshop-repair.jpg',
+        'img'   => '/assets/img/service-workshop-repair.jpg',
         'icon'  => 'wrench',
     ],
     [
         'title' => 'At-Home Bicycle Repairs',
         'desc'  => "Can't make it to us? We come to you. Book a mobile mechanic and get your bike fixed right at your home or office.",
-        'img'   => 'assets/img/service-home-repair.jpg',
+        'img'   => '/assets/img/service-home-repair.jpg',
         'icon'  => 'home',
     ],
     [
         'title' => 'Bike Sales',
         'desc'  => 'A wide range of new and quality-checked bicycles for every rider — from first-timers to serious mountain bikers.',
-        'img'   => 'assets/img/service-bike-sales.jpg',
+        'img'   => '/assets/img/service-bike-sales.jpg',
         'icon'  => 'tag',
     ],
     [
         'title' => 'Bike Rental / Hire',
         'desc'  => 'Well-maintained bikes for hire by the hour, day or week — perfect for visitors, events and casual weekend rides.',
-        'img'   => 'assets/img/service-bike-hire.jpg',
+        'img'   => '/assets/img/service-bike-hire.jpg',
         'icon'  => 'clock',
     ],
     [
         'title' => 'Cycling Accessories & Spares',
         'desc'  => 'Helmets, lights, tubes, tyres, locks and genuine spare parts — everything you need to keep riding safely.',
-        'img'   => 'assets/img/service-accessories.jpg',
+        'img'   => '/assets/img/service-accessories.jpg',
         'icon'  => 'bag',
     ],
     [
         'title' => 'Corporate Team Building',
         'desc'  => 'Fun, active team-building rides tailored for companies and organisations, fully organised from start to finish.',
-        'img'   => 'assets/img/service-corporate.jpg',
+        'img'   => '/assets/img/service-corporate.jpg',
         'icon'  => 'users',
     ],
     [
         'title' => 'Cycling Tours & Adventure',
         'desc'  => 'Guided cycling tours through Kampala and beyond — scenic trails, great company and unforgettable adventure.',
-        'img'   => 'assets/img/service-tours.jpg',
+        'img'   => '/assets/img/service-tours.jpg',
         'icon'  => 'map',
     ],
 ];
@@ -85,7 +85,7 @@ $GLOBALS['blog_posts'] = [
         'slug'    => 'five-signs-your-bike-needs-a-service',
         'title'   => '5 Signs Your Bike Needs a Service',
         'excerpt' => "Squeaky brakes, a slipping chain, a wobbly wheel — small warning signs save you big repair bills later. Here's what to watch for.",
-        'image'   => 'assets/img/service-workshop-repair.jpg',
+        'image'   => '/assets/img/service-workshop-repair.jpg',
         'date'    => '2026-08-12',
         'author'  => 'Ngalo Cycling Team',
         'body'    => "<p>Your bicycle talks to you long before it breaks down — you just have to listen. Here are five signs it's time to book a service with us.</p>
@@ -105,7 +105,7 @@ $GLOBALS['blog_posts'] = [
         'slug'    => 'why-mobile-bike-repair-makes-sense',
         'title'   => 'Why Mobile Bike Repair Makes Sense in Kampala',
         'excerpt' => 'Traffic, distance, a flat tyre right before you need to leave — our at-home repair service was built for exactly these moments.',
-        'image'   => 'assets/img/service-home-repair.jpg',
+        'image'   => '/assets/img/service-home-repair.jpg',
         'date'    => '2026-07-02',
         'author'  => 'Ngalo Cycling Team',
         'body'    => "<p>Not everyone has the time to carry a bicycle across town for a repair. That's the whole idea behind our mobile service — the workshop comes to you.</p>
@@ -116,7 +116,7 @@ $GLOBALS['blog_posts'] = [
         'slug'    => 'gearing-up-for-your-first-cycling-tour',
         'title'   => 'Gearing Up for Your First Cycling Tour',
         'excerpt' => "Thinking of joining one of our guided rides? Here's what to bring, what to expect, and how to prepare for the trail.",
-        'image'   => 'assets/img/service-tours.jpg',
+        'image'   => '/assets/img/service-tours.jpg',
         'date'    => '2026-05-20',
         'author'  => 'Ngalo Cycling Team',
         'body'    => "<p>Our cycling tours take riders of all levels through some of the most scenic trails around Kampala. If it's your first time joining us, here's how to prepare.</p>
@@ -136,7 +136,7 @@ $GLOBALS['events'] = [
         'date'    => '2026-09-20',
         'time'    => '7:00 AM',
         'location'=> 'Meet at Ngalo Workshop, Kulambiro Ring Road',
-        'image'   => 'assets/img/service-tours.jpg',
+        'image'   => '/assets/img/service-tours.jpg',
         'desc'    => 'A relaxed group ride through scenic outskirts trails, suitable for intermediate riders. Water and a support vehicle provided.',
         'status'  => 'upcoming',
     ],
@@ -145,7 +145,7 @@ $GLOBALS['events'] = [
         'date'    => '2026-10-04',
         'time'    => 'By arrangement',
         'location'=> 'Location arranged with your company',
-        'image'   => 'assets/img/service-corporate.jpg',
+        'image'   => '/assets/img/service-corporate.jpg',
         'desc'    => 'Book a fully organised team-building cycling day for your company — bikes, guides and route planning included.',
         'status'  => 'upcoming',
     ],
@@ -154,7 +154,7 @@ $GLOBALS['events'] = [
         'date'    => '2026-08-02',
         'time'    => '9:00 AM – 4:00 PM',
         'location'=> 'Ngalo Workshop, Kulambiro Ring Road',
-        'image'   => 'assets/img/service-workshop-repair.jpg',
+        'image'   => '/assets/img/service-workshop-repair.jpg',
         'desc'    => 'Our mechanics offered free brake, tyre and gear checks to the community. Thank you to everyone who came through!',
         'status'  => 'past',
     ],

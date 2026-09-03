@@ -2,8 +2,8 @@
 <footer class="site-footer">
     <div class="container footer-grid">
         <div class="footer-col footer-brand">
-            <a href="index.php" class="brand">
-                <img src="assets/img/logo.jpg" alt="<?php echo SITE_NAME; ?> logo" class="brand-logo">
+            <a href="/" class="brand">
+                <img src="/assets/img/logo.jpg" alt="<?php echo SITE_NAME; ?> logo" class="brand-logo">
                 <span class="brand-text">
                     <span class="brand-name">Ngalo</span>
                     <span class="brand-sub">Mobile Cycling Services</span>
@@ -21,13 +21,13 @@
         <div class="footer-col">
             <h4>Quick Links</h4>
             <ul class="footer-links">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="index.php#about">About Us</a></li>
-                <li><a href="index.php#services">Services</a></li>
-                <li><a href="index.php#gallery">Gallery</a></li>
-                <li><a href="blog.php">Blog</a></li>
-                <li><a href="events.php">Events</a></li>
-                <li><a href="index.php#contact">Contact</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/#about">About Us</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/#gallery">Gallery</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="/#contact">Contact</a></li>
             </ul>
         </div>
 
@@ -35,7 +35,7 @@
             <h4>Our Services</h4>
             <ul class="footer-links">
                 <?php foreach ($GLOBALS['services'] as $s): ?>
-                <li><a href="index.php#services"><?php echo htmlspecialchars($s['title']); ?></a></li>
+                <li><a href="/#services"><?php echo htmlspecialchars($s['title']); ?></a></li>
                 <?php endforeach; ?>
             </ul>
         </div>
@@ -65,6 +65,6 @@
     <?php echo icon('chevron', 'icon'); ?>
 </button>
 
-<script src="assets/js/main.js"></script>
+<script src="/assets/js/main.js"></script>
 </body>
 </html>
