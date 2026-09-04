@@ -11,9 +11,9 @@ define('SITE_URL', 'https://ngalogroup.com');
 define('SITE_DESCRIPTION', "Ngalo Mobile Cycling Services is Kampala's one-stop shop for bicycle repairs, sales, rentals, spares, cycling lessons, corporate team building and guided cycling tours — at our workshop, at your doorstep, or out on the trail.");
 
 define('CONTACT_EMAIL', 'ngalomobilecyclingservices@gmail.com');
-define('CONTACT_PHONE_1', '+256 784 917 811');
-define('CONTACT_PHONE_2', '+256 706 917 819');
-define('CONTACT_WHATSAPP', '256784917811'); // digits only, international format, no leading +
+define('CONTACT_PHONE_1', '+256 706 917 819');
+define('CONTACT_PHONE_2', '+256 784 917 811');
+define('CONTACT_WHATSAPP', '256706917819'); // digits only, international format, no leading +
 define('CONTACT_ADDRESS', 'Kulambiro Ring Road, Kampala, Uganda');
 
 define('SOCIAL_FACEBOOK', 'https://facebook.com/ngalomobilecyclingservice');
@@ -28,7 +28,7 @@ $GLOBALS['nav_links'] = [
     '/#about'     => 'About',
     '/#services'  => 'Services',
     '/packages'   => 'Packages',
-    '/#gallery'   => 'Gallery',
+    '/gallery'    => 'Gallery',
     '/blog'       => 'Blog',
     '/events'     => 'Events',
     '/#contact'   => 'Contact',
@@ -78,6 +78,51 @@ $GLOBALS['services'] = [
         'img'   => '/assets/img/service-tours.jpg',
         'icon'  => 'map',
     ],
+];
+
+/** The team. */
+$GLOBALS['team'] = [
+    ['name' => 'Hamzah Juma Mayanja', 'role' => 'Co-Founder', 'img' => '/assets/img/team-hamzah.jpg'],
+    ['name' => 'Hilda Ayugi', 'role' => 'Co-Founder', 'img' => '/assets/img/team-hilda.jpg'],
+    ['name' => 'Amumpire Brian', 'role' => 'Technician', 'img' => '/assets/img/team-brian.jpg'],
+    ['name' => 'Nambajjo Molly', 'role' => 'Technician', 'img' => '/assets/img/team-molly.jpg'],
+    ['name' => 'Nansubuga Maria', 'role' => 'Technician', 'img' => '/assets/img/team-maria.jpg'],
+];
+
+/** Full photo gallery. Featured on the home page (curated slice) and the dedicated /gallery page (all of them). */
+$GLOBALS['gallery_photos'] = [
+    ['src' => '/assets/img/gallery/photo-01.jpg', 'alt' => 'Rider in a teal helmet posing with her mountain bike against a stone wall', 'featured' => true],
+    ['src' => '/assets/img/gallery/photo-02.jpg', 'alt' => 'Rider in a pink top and striped leggings pausing on her mountain bike'],
+    ['src' => '/assets/img/gallery/photo-03.jpg', 'alt' => 'Cyclist wearing a hydration vest pausing along a red dirt trail'],
+    ['src' => '/assets/img/gallery/photo-04.jpg', 'alt' => 'Two riders pausing together under a covered porch'],
+    ['src' => '/assets/img/gallery/photo-05.jpg', 'alt' => 'Group of five cyclists posing with their bikes outside an office building', 'featured' => true],
+    ['src' => '/assets/img/gallery/photo-06.jpg', 'alt' => 'Group of six riders resting under trees along a park path', 'featured' => true],
+    ['src' => '/assets/img/gallery/photo-07.jpg', 'alt' => 'Rider arriving at a schoolyard checkpoint with fellow cyclists behind him'],
+    ['src' => '/assets/img/gallery/photo-08.jpg', 'alt' => 'Group of five riders lined up along a tree-lined road'],
+    ['src' => '/assets/img/gallery/photo-09.jpg', 'alt' => 'A father and son duo with race bib 358 at a community cycling event', 'featured' => true],
+    ['src' => '/assets/img/gallery/photo-10.jpg', 'alt' => 'Rider showing off a teal mountain bike inside a garage'],
+    ['src' => '/assets/img/gallery/photo-11.jpg', 'alt' => 'Group of six cyclists lined up on a road beside a paint company signboard'],
+    ['src' => '/assets/img/gallery/photo-12.jpg', 'alt' => 'New mountain bikes lined up for sale against the workshop wall'],
+    ['src' => '/assets/img/gallery/photo-13.jpg', 'alt' => 'Solo rider smiling on a sunlit red dirt road'],
+    ['src' => '/assets/img/gallery/photo-14.jpg', 'alt' => 'Group of eight cyclists gathered together on a paved courtyard', 'featured' => true],
+    ['src' => '/assets/img/gallery/photo-15.jpg', 'alt' => 'Solo rider posing with his bike beside an Endiro Coffee signboard'],
+    ['src' => '/assets/img/gallery/photo-16.jpg', 'alt' => 'Group of five riders pausing together beside a busy road'],
+    ['src' => '/assets/img/gallery/photo-17.jpg', 'alt' => 'Bikes for sale racked up inside the workshop showroom', 'featured' => true],
+    ['src' => '/assets/img/gallery/photo-18.jpg', 'alt' => 'Bikes parked in a row inside a covered walkway'],
+    ['src' => '/assets/img/gallery/photo-19.jpg', 'alt' => 'New mountain bikes lined up outside the Ngalo shopfront', 'featured' => true],
+    ['src' => '/assets/img/gallery/photo-20.jpg', 'alt' => 'Rider giving a peace sign in front of a gated compound'],
+    ['src' => '/assets/img/gallery/photo-21.jpg', 'alt' => 'Group of cyclists gathered outside the Ngalo storefront'],
+    ['src' => '/assets/img/gallery/photo-22.jpg', 'alt' => 'Rider smiling on a quiet countryside road'],
+    ['src' => '/assets/img/gallery/photo-23.jpg', 'alt' => 'Cyclist posing with his bike near St. Ochi Motel signage'],
+    ['src' => '/assets/img/gallery/photo-24.jpg', 'alt' => 'Group of riders outside the Ngalo shopfront beside the "Our Services" signboard', 'featured' => true],
+    ['src' => '/assets/img/gallery/photo-25.jpg', 'alt' => 'Bikes for sale lined up under a covered walkway'],
+    ['src' => '/assets/img/gallery/photo-26.jpg', 'alt' => 'Rider posing with her bike beside a teammate under a stairwell'],
+    ['src' => '/assets/img/gallery/photo-27.jpg', 'alt' => 'New mountain bikes on display at the workshop entrance'],
+    ['src' => '/assets/img/gallery/photo-28.jpg', 'alt' => 'Cyclist smiling in a yellow jacket on a dirt road'],
+    ['src' => '/assets/img/gallery/photo-29.jpg', 'alt' => 'Group of five riders resting under trees on a forest path'],
+    ['src' => '/assets/img/gallery/photo-30.jpg', 'alt' => 'Group of cyclists gathered outside the Ngalo storefront'],
+    ['src' => '/assets/img/gallery/photo-31.jpg', 'alt' => 'Group of eight cyclists outside the Ngalo shopfront and services board'],
+    ['src' => '/assets/img/gallery/photo-32.jpg', 'alt' => 'Mountain bikes on display at the workshop entrance'],
 ];
 
 /** "Book an Appointment" categories, featured on the home page and linking into the Packages page. */
