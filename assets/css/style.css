@@ -197,6 +197,24 @@ body.nav-is-open #back-to-top { opacity: 0; visibility: hidden; pointer-events: 
 .service-link .icon { width: 16px; height: 16px; transition: transform .2s ease; }
 .service-link:hover .icon { transform: translateX(4px); }
 
+/* ---------- Book an appointment ---------- */
+.appt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
+.appt-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+    box-shadow: var(--shadow-sm); padding: 32px 28px; text-align: center;
+    display: flex; flex-direction: column; align-items: center;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+.appt-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.appt-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 60px; height: 60px; border-radius: 50%; background: var(--teal-100); color: var(--teal-600);
+    margin-bottom: 18px;
+}
+.appt-icon .icon { width: 26px; height: 26px; }
+.appt-card h3 { font-size: 1.1rem; margin-bottom: .5em; }
+.appt-card p { font-size: .92rem; margin-bottom: 22px; flex-grow: 1; }
+
 /* ---------- Gallery ---------- */
 .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 190px; gap: 16px; }
 .gallery-grid > :nth-child(1) { grid-column: span 2; grid-row: span 2; }
@@ -249,6 +267,32 @@ body.nav-is-open #back-to-top { opacity: 0; visibility: hidden; pointer-events: 
 .event-badge { position: absolute; top: 14px; right: 14px; background: rgba(11,31,56,.85); color: var(--white); font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 5px 12px; border-radius: 999px; }
 .event-card-full.is-past { opacity: .82; }
 .event-card-full.is-past .event-card-full-img img { filter: grayscale(35%); }
+
+/* ---------- Packages: lesson & tour cards ---------- */
+.lesson-package { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: center; }
+.lesson-media img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow-lg); }
+.lesson-price-row { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+.lesson-price { font-family: var(--font-head); font-weight: 800; font-size: 2rem; color: var(--teal-600); }
+.lesson-duration { display: flex; align-items: center; gap: 8px; font-family: var(--font-head); font-weight: 600; color: var(--navy-800); font-size: .92rem; }
+.lesson-duration .icon { width: 17px; height: 17px; color: var(--teal-600); }
+.lesson-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 26px; }
+.lesson-cols h4 { font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin-bottom: 12px; }
+.check-list { display: grid; gap: 10px; }
+.check-list li { display: flex; align-items: center; gap: 8px; font-size: .92rem; font-weight: 600; color: var(--navy-800); }
+.check-list .icon { width: 16px; height: 16px; color: var(--teal-600); flex-shrink: 0; }
+
+.tour-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--border); display: flex; flex-direction: column; transition: transform .3s ease, box-shadow .3s ease; }
+.tour-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.tour-card-img { position: relative; height: 190px; overflow: hidden; }
+.tour-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.tour-card:hover .tour-card-img img { transform: scale(1.08); }
+.tour-fee { position: absolute; top: 14px; right: 14px; background: var(--teal-600); color: var(--white); font-family: var(--font-head); font-weight: 700; font-size: .82rem; padding: 6px 14px; border-radius: 999px; box-shadow: var(--shadow-sm); }
+.tour-card-body { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
+.tour-card-body h3 { font-size: 1.05rem; margin-bottom: .5em; }
+.tour-includes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; margin: 4px 0 20px; }
+.tour-includes li { display: flex; align-items: center; gap: 6px; font-size: .82rem; color: var(--navy-800); font-weight: 600; }
+.tour-includes .icon { width: 14px; height: 14px; color: var(--teal-600); flex-shrink: 0; }
+.tour-card-body .btn { margin-top: auto; }
 
 /* ---------- CTA banner ---------- */
 .cta-banner { background: linear-gradient(120deg, var(--navy-900), var(--teal-700)); color: var(--white); padding: 64px 0; }
@@ -362,8 +406,8 @@ body.nav-is-open #back-to-top { opacity: 0; visibility: hidden; pointer-events: 
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1024px) {
-    .about-grid, .contact-grid, .post-single-grid { grid-template-columns: 1fr; }
-    .about-media { max-width: 420px; margin: 0 auto; }
+    .about-grid, .contact-grid, .post-single-grid, .lesson-package { grid-template-columns: 1fr; }
+    .about-media, .lesson-media { max-width: 420px; margin: 0 auto; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .gallery-grid { grid-template-columns: repeat(3, 1fr); }
     .gallery-grid > :nth-child(1) { grid-column: span 2; grid-row: span 2; }
@@ -427,6 +471,7 @@ body.nav-is-open #back-to-top { opacity: 0; visibility: hidden; pointer-events: 
     .gallery-grid > :nth-child(1) { grid-column: span 2; grid-row: span 1; }
     .footer-grid { grid-template-columns: 1fr; }
     .hero-stats { gap: 26px; }
+    .lesson-cols, .tour-includes { grid-template-columns: 1fr; }
     .whatsapp-float { width: 54px; height: 54px; bottom: 18px; right: 18px; }
     #back-to-top { right: 84px; bottom: 20px; width: 40px; height: 40px; }
     .event-card { flex-direction: column; }
