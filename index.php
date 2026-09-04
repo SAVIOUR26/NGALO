@@ -45,12 +45,12 @@ require_once __DIR__ . '/includes/header.php';
         </div>
         <div class="about-copy reveal">
             <p class="eyebrow">About Ngalo</p>
-            <h2>Kampala's mobile bicycle workshop, on your schedule</h2>
-            <p>Ngalo Mobile Cycling Services was built around one idea: cycling support shouldn't be a hassle. Whether your bike needs a quick fix, you're shopping for a new ride, or you want to explore Kampala on two wheels, our team meets you where you are — at our Kulambiro workshop or right at your doorstep.</p>
+            <h2>Kampala's one-stop shop for all your cycling needs</h2>
+            <p>Ngalo started as a mobile repair outfit — but we've grown into a lot more than that. Repairs at our Kulambiro workshop or at your doorstep, bikes to buy or hire, structured lessons for new riders, and guided tours across the city and beyond. Whatever stage of the ride you're at, our team meets you there.</p>
             <ul class="about-features">
                 <li><?php echo icon('check'); ?> Certified, experienced bicycle mechanics</li>
                 <li><?php echo icon('check'); ?> At-home &amp; on-site repair visits</li>
-                <li><?php echo icon('check'); ?> Genuine spares and accessories</li>
+                <li><?php echo icon('check'); ?> Beginner-friendly cycling lessons</li>
                 <li><?php echo icon('check'); ?> Guided tours and corporate rides</li>
             </ul>
             <div class="about-actions">
@@ -81,6 +81,27 @@ require_once __DIR__ . '/includes/header.php';
                     <p><?php echo htmlspecialchars($s['desc']); ?></p>
                     <a href="https://wa.me/<?php echo CONTACT_WHATSAPP; ?>?text=Hi%20Ngalo%2C%20I%27d%20like%20to%20ask%20about%20<?php echo urlencode($s['title']); ?>." class="service-link" target="_blank" rel="noopener">Enquire <?php echo icon('arrow-right'); ?></a>
                 </div>
+            </article>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<!-- ============ BOOK AN APPOINTMENT ============ -->
+<section class="section appointments" id="book">
+    <div class="container">
+        <div class="section-head reveal">
+            <p class="eyebrow">Ready When You Are</p>
+            <h2>Book an appointment</h2>
+            <p class="section-lead">Pick what you need and we'll take it from there — full package details and pricing on the next step.</p>
+        </div>
+        <div class="appt-grid">
+            <?php foreach ($GLOBALS['appointments'] as $i => $a): ?>
+            <article class="appt-card reveal" style="transition-delay:<?php echo $i * 90; ?>ms">
+                <span class="appt-icon"><?php echo icon($a['icon']); ?></span>
+                <h3><?php echo htmlspecialchars($a['title']); ?></h3>
+                <p><?php echo htmlspecialchars($a['desc']); ?></p>
+                <a href="/packages#<?php echo $a['slug']; ?>" class="btn btn-primary btn-block"><?php echo htmlspecialchars($a['cta']); ?></a>
             </article>
             <?php endforeach; ?>
         </div>

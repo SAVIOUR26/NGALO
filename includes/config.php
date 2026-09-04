@@ -8,7 +8,7 @@ define('SITE_NAME', 'Ngalo Mobile Cycling Services');
 define('SITE_SHORT_NAME', 'Ngalo Cycling');
 define('SITE_TAGLINE', 'With Convenience');
 define('SITE_URL', 'https://ngalogroup.com');
-define('SITE_DESCRIPTION', 'Ngalo Mobile Cycling Services offers bicycle repairs, sales, rentals, spares, corporate team building and guided cycling tours in Kampala, Uganda — at our workshop or at your doorstep.');
+define('SITE_DESCRIPTION', "Ngalo Mobile Cycling Services is Kampala's one-stop shop for bicycle repairs, sales, rentals, spares, cycling lessons, corporate team building and guided cycling tours — at our workshop, at your doorstep, or out on the trail.");
 
 define('CONTACT_EMAIL', 'ngalomobilecyclingservices@gmail.com');
 define('CONTACT_PHONE_1', '+256 784 917 811');
@@ -27,6 +27,7 @@ $GLOBALS['nav_links'] = [
     '/'           => 'Home',
     '/#about'     => 'About',
     '/#services'  => 'Services',
+    '/packages'   => 'Packages',
     '/#gallery'   => 'Gallery',
     '/blog'       => 'Blog',
     '/events'     => 'Events',
@@ -76,6 +77,86 @@ $GLOBALS['services'] = [
         'desc'  => 'Guided cycling tours through Kampala and beyond — scenic trails, great company and unforgettable adventure.',
         'img'   => '/assets/img/service-tours.jpg',
         'icon'  => 'map',
+    ],
+];
+
+/** "Book an Appointment" categories, featured on the home page and linking into the Packages page. */
+$GLOBALS['appointments'] = [
+    [
+        'slug'  => 'at-home-service',
+        'title' => 'At-Home Bike Service',
+        'desc'  => 'A mechanic comes to your home or office for repairs and tune-ups. No fixed package — book a visit and we quote you on the spot.',
+        'icon'  => 'home',
+        'cta'   => 'Book a Visit',
+    ],
+    [
+        'slug'  => 'lessons',
+        'title' => 'Cycling Lessons',
+        'desc'  => 'A structured 14-day course with your own coach, bike and helmet — from first pedal to confident rider.',
+        'icon'  => 'star',
+        'cta'   => 'Book This Package',
+    ],
+    [
+        'slug'  => 'experiences',
+        'title' => 'Guided Cycling Experience',
+        'desc'  => 'Guided rides across Kampala and beyond, with an English-speaking guide, technical support and all safety gear included.',
+        'icon'  => 'map',
+        'cta'   => 'Book a Tour',
+    ],
+];
+
+/** Cycling Lessons package. */
+$GLOBALS['lesson_package'] = [
+    'title'    => 'Cycling Lessons',
+    'tagline'  => 'Learn to ride with confidence',
+    'price'    => 'UGX 280,000',
+    'duration' => '14 days · 1 hour a day',
+    'image'    => '/assets/img/gallery-2.jpg',
+    'includes' => ['Bike', 'Helmet', 'Coach'],
+    'benefits' => ['Learn how to ride', 'Endurance building', 'Technical skills'],
+];
+
+/** Guided cycling experience / tour packages. */
+$GLOBALS['tour_packages'] = [
+    [
+        'slug'     => 'kampala-cycling-experience',
+        'title'    => 'Kampala Cycling Experience',
+        'meet'     => 'Meeting point confirmed when you book',
+        'duration' => '2–3 hours',
+        'fee'      => 'UGX 111,000',
+        'image'    => '/assets/img/service-tours.jpg',
+        'desc'     => "A guided ride through Kampala's streets and scenic viewpoints — a great introduction to cycling the city.",
+        'includes' => ['English-speaking guide', 'Technical support', 'Bike', 'Helmet', 'Resting points'],
+    ],
+    [
+        'slug'     => 'mabamba-swamp-cycling-tour',
+        'title'    => 'Mabamba Swamp Cycling Tour',
+        'meet'     => 'Meeting point confirmed when you book',
+        'duration' => '2–3 hours',
+        'fee'      => 'UGX 222,000',
+        'image'    => '/assets/img/gallery-7.jpg',
+        'desc'     => "Ride out toward the Mabamba wetland, one of the region's best-known birding spots on the shores of Lake Victoria.",
+        'includes' => ['English-speaking guide', 'Technical support', 'Bike', 'Helmet', 'Resting points'],
+    ],
+    [
+        'slug'     => 'lakeside-mukono-ride-and-tour',
+        'title'    => 'Lakeside Mukono Ride and Tour',
+        'meet'     => 'Meet at Gaba Beach House',
+        'duration' => '2–3 hours',
+        'fee'      => 'UGX 111,000',
+        'image'    => '/assets/img/hero.jpg',
+        'desc'     => 'A scenic lakeside ride from Gaba out toward Mukono, with rest stops along the way.',
+        'includes' => ['English-speaking guide', 'Technical support', 'Bike', 'Helmet', 'Resting points'],
+    ],
+    [
+        'slug'     => 'ride-to-sezzibwa-falls',
+        'title'    => 'Ride to Sezzibwa Falls',
+        'meet'     => 'Meeting point confirmed when you book',
+        'duration' => '2–4 hours',
+        'fee'      => 'UGX 111,000',
+        'image'    => '/assets/img/service-corporate.jpg',
+        'desc'     => 'A longer countryside ride out to Sezzibwa Falls, a well-known natural and cultural site near Mukono.',
+        'includes' => ['English-speaking guide', 'Technical support', 'Bike', 'Helmet', 'Resting points'],
     ],
 ];
 

@@ -24,6 +24,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/#about">About Us</a></li>
                 <li><a href="/#services">Services</a></li>
+                <li><a href="/packages">Packages</a></li>
                 <li><a href="/#gallery">Gallery</a></li>
                 <li><a href="/blog">Blog</a></li>
                 <li><a href="/events">Events</a></li>
