@@ -27,7 +27,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="hero-stats reveal">
             <div><strong>7+</strong><span>Services Offered</span></div>
             <div><strong>500+</strong><span>Bikes Serviced</span></div>
-            <div><strong>100%</strong><span>Mobile &amp; Workshop</span></div>
+            <div><strong>1000+</strong><span>Satisfied Customers</span></div>
         </div>
     </div>
     <a href="#about" class="scroll-cue" aria-label="Scroll down"><?php echo icon('chevron'); ?></a>
@@ -61,8 +61,30 @@ require_once __DIR__ . '/includes/header.php';
     </div>
 </section>
 
+<!-- ============ TEAM ============ -->
+<section class="section team alt-bg" id="team">
+    <div class="container">
+        <div class="section-head reveal">
+            <p class="eyebrow">The People Behind Ngalo</p>
+            <h2>Meet the team</h2>
+            <p class="section-lead">A small, hands-on team that knows every bike that comes through the door.</p>
+        </div>
+        <div class="team-grid">
+            <?php foreach ($GLOBALS['team'] as $i => $member): ?>
+            <article class="team-card reveal" style="transition-delay:<?php echo ($i % 5) * 70; ?>ms">
+                <div class="team-card-img">
+                    <img src="<?php echo $member['img']; ?>" alt="<?php echo htmlspecialchars($member['name']); ?>" loading="lazy">
+                </div>
+                <h3><?php echo htmlspecialchars($member['name']); ?></h3>
+                <span class="team-role"><?php echo htmlspecialchars($member['role']); ?></span>
+            </article>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
 <!-- ============ SERVICES ============ -->
-<section class="section services alt-bg" id="services">
+<section class="section services" id="services">
     <div class="container">
         <div class="section-head reveal">
             <p class="eyebrow">What We Do</p>
@@ -118,22 +140,16 @@ require_once __DIR__ . '/includes/header.php';
         </div>
         <div class="gallery-grid">
             <?php
-            $gallery_images = [
-                ['src' => '/assets/img/gallery-1.jpg', 'alt' => 'Mechanic fitting a wheel for a customer'],
-                ['src' => '/assets/img/service-tours.jpg', 'alt' => 'Group cycling tour on a dirt road'],
-                ['src' => '/assets/img/gallery-3.jpg', 'alt' => 'Mechanic servicing a bike on a repair stand'],
-                ['src' => '/assets/img/gallery-4.jpg', 'alt' => 'Workshop bicycle wheel service'],
-                ['src' => '/assets/img/service-bike-sales.jpg', 'alt' => 'Wall of bicycles ready for sale'],
-                ['src' => '/assets/img/gallery-6.jpg', 'alt' => 'At-home bicycle repair'],
-                ['src' => '/assets/img/gallery-7.jpg', 'alt' => 'Bikes loaded for a cycling tour'],
-                ['src' => '/assets/img/service-corporate.jpg', 'alt' => 'Group ride through a forest trail'],
-            ];
-            foreach ($gallery_images as $i => $g): ?>
+            $featured_photos = array_values(array_filter($GLOBALS['gallery_photos'], fn($g) => !empty($g['featured'])));
+            foreach ($featured_photos as $i => $g): ?>
             <button type="button" class="gallery-item reveal" data-full="<?php echo $g['src']; ?>" data-caption="<?php echo htmlspecialchars($g['alt']); ?>" style="transition-delay:<?php echo ($i % 4) * 70; ?>ms">
                 <img src="<?php echo $g['src']; ?>" alt="<?php echo htmlspecialchars($g['alt']); ?>" loading="lazy">
                 <span class="gallery-zoom"><?php echo icon('map'); ?></span>
             </button>
             <?php endforeach; ?>
+        </div>
+        <div class="gallery-more reveal">
+            <a href="/gallery" class="btn btn-outline">View Full Gallery <?php echo icon('arrow-right'); ?></a>
         </div>
     </div>
 </section>
