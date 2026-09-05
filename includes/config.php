@@ -17,8 +17,9 @@ define('CONTACT_WHATSAPP', '256706917819'); // digits only, international format
 define('CONTACT_ADDRESS', 'Kulambiro Ring Road, Kampala, Uganda');
 
 define('SOCIAL_FACEBOOK', 'https://facebook.com/ngalomobilecyclingservice');
-define('SOCIAL_INSTAGRAM', 'https://instagram.com/ngalo_mobile_cycling_services');
-define('SOCIAL_TWITTER', 'https://twitter.com/ngalocyclingug');
+define('SOCIAL_INSTAGRAM', 'https://www.instagram.com/ngalo.cycling_123');
+define('SOCIAL_TWITTER', 'https://x.com/NgaloCyclingUg');
+define('SOCIAL_TIKTOK', 'https://www.tiktok.com/@ngalo.cycling.ug');
 
 define('BASE_PATH', '');
 

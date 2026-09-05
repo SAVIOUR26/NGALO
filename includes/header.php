@@ -42,7 +42,8 @@ if ($script_slug === 'blog-post') { $script_slug = 'blog'; }
         <div class="topbar-social">
             <a href="<?php echo SOCIAL_FACEBOOK; ?>" aria-label="Facebook" target="_blank" rel="noopener"><?php echo icon('facebook'); ?></a>
             <a href="<?php echo SOCIAL_INSTAGRAM; ?>" aria-label="Instagram" target="_blank" rel="noopener"><?php echo icon('instagram'); ?></a>
-            <a href="<?php echo SOCIAL_TWITTER; ?>" aria-label="Twitter" target="_blank" rel="noopener"><?php echo icon('twitter'); ?></a>
+            <a href="<?php echo SOCIAL_TWITTER; ?>" aria-label="X (Twitter)" target="_blank" rel="noopener"><?php echo icon('twitter'); ?></a>
+            <a href="<?php echo SOCIAL_TIKTOK; ?>" aria-label="TikTok" target="_blank" rel="noopener"><?php echo icon('tiktok'); ?></a>
         </div>
     </div>
 </div>
