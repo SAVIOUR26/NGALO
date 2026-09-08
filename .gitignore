@@ -1,3 +1,7 @@
 # Real SMTP credentials — copy includes/mail-config.example.php to this
 # filename and fill in real values. Never commit this file.
 includes/mail-config.php
+
+# Contact-form send diagnostics (path taken + any error message). Safe to
+# delete any time; never commit.
+includes/mail-debug.log
