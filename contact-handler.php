@@ -18,6 +18,17 @@ function redirect_with_status($status) {
     exit;
 }
 
+/**
+ * Appends one line to includes/mail-debug.log so a failed send can be
+ * diagnosed without server console access. Gitignored; safe to delete
+ * any time — it only records the path taken and any error message, never
+ * the message body.
+ */
+function log_mail_attempt($line) {
+    $entry = '[' . date('Y-m-d H:i:s') . '] ' . $line . "\n";
+    @file_put_contents(__DIR__ . '/includes/mail-debug.log', $entry, FILE_APPEND | LOCK_EX);
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     redirect_with_status('error');
 }
@@ -76,8 +87,10 @@ if (file_exists($mail_config_file)) {
         $mail->Body    = $body;
 
         $sent = $mail->send();
+        log_mail_attempt('SMTP path: ' . ($sent ? 'sent OK' : 'send() returned false — ' . $mail->ErrorInfo));
     } catch (PHPMailerException $e) {
         $sent = false;
+        log_mail_attempt('SMTP path: exception — ' . $e->getMessage() . (isset($mail) ? ' | ErrorInfo: ' . $mail->ErrorInfo : ''));
     }
 } else {
     // No SMTP configured yet — fall back to the server's built-in mailer.
@@ -87,6 +100,7 @@ if (file_exists($mail_config_file)) {
         'X-Mailer: PHP/' . phpversion(),
     ];
     $sent = @mail($to, $mail_subject, $body, implode("\r\n", $headers));
+    log_mail_attempt('mail() fallback path (no includes/mail-config.php found): ' . ($sent ? 'returned true' : 'returned false'));
 }
 
 redirect_with_status($sent ? 'success' : 'error');
