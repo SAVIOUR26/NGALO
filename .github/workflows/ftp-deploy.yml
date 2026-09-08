@@ -21,6 +21,37 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Writes includes/mail-config.php from repo secrets, right here in the
+      # ephemeral runner — never committed, never in git history. Skips
+      # cleanly if SMTP_PASSWORD isn't set yet, so the deploy still works
+      # before this is configured (the contact form just falls back to
+      # mail() until then). Add SMTP_HOST, SMTP_USERNAME and SMTP_PASSWORD
+      # as repository secrets (Settings -> Secrets and variables -> Actions)
+      # to enable this.
+      - name: Write mail-config.php from secrets
+        if: ${{ secrets.SMTP_PASSWORD != '' }}
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ vars.SMTP_PORT }}
+          SMTP_ENCRYPTION: ${{ vars.SMTP_ENCRYPTION }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_FROM_NAME: ${{ vars.SMTP_FROM_NAME }}
+        run: |
+          php -r '
+            $cfg = [
+                "host"       => getenv("SMTP_HOST"),
+                "port"       => (int) (getenv("SMTP_PORT") ?: 587),
+                "encryption" => getenv("SMTP_ENCRYPTION") ?: "tls",
+                "username"   => getenv("SMTP_USERNAME"),
+                "password"   => getenv("SMTP_PASSWORD"),
+                "from_email" => getenv("SMTP_USERNAME"),
+                "from_name"  => getenv("SMTP_FROM_NAME") ?: "Ngalo Mobile Cycling Services",
+            ];
+            file_put_contents("includes/mail-config.php", "<?php\nreturn " . var_export($cfg, true) . ";\n");
+            echo "Wrote includes/mail-config.php (" . strlen(getenv("SMTP_PASSWORD")) . "-char password set)\n";
+          '
+
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
