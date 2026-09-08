@@ -60,6 +60,7 @@ if (file_exists($mail_config_file)) {
     try {
         $mail = new PHPMailer(true);
         $mail->isSMTP();
+        $mail->Timeout    = 15; // don't leave a visitor waiting minutes if the mail server is unreachable
         $mail->Host       = $cfg['host'];
         $mail->SMTPAuth   = true;
         $mail->Username   = $cfg['username'];

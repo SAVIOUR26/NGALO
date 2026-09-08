@@ -18,8 +18,8 @@
  */
 return [
     'host'       => 'mail.ngalogroup.com',        // often mail.yourdomain.com
-    'port'       => 465,                           // 465 for SMTPS, 587 for STARTTLS
-    'encryption' => 'smtps',                       // 'smtps' for port 465, 'tls' for port 587
+    'port'       => 587,                           // 587 for STARTTLS, 465 for implicit SSL
+    'encryption' => 'tls',                         // 'tls' for port 587, 'ssl' for port 465
     'username'   => 'info@ngalogroup.com',         // the full mailbox address
     'password'   => 'REPLACE_WITH_MAILBOX_PASSWORD',
     'from_email' => 'info@ngalogroup.com',         // must usually match the username above
