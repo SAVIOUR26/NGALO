@@ -10,15 +10,16 @@ define('SITE_TAGLINE', 'With Convenience');
 define('SITE_URL', 'https://ngalogroup.com');
 define('SITE_DESCRIPTION', "Ngalo Mobile Cycling Services is Kampala's one-stop shop for bicycle repairs, sales, rentals, spares, cycling lessons, corporate team building and guided cycling tours — at our workshop, at your doorstep, or out on the trail.");
 
-define('CONTACT_EMAIL', 'ngalomobilecyclingservices@gmail.com');
+define('CONTACT_EMAIL', 'info@ngalogroup.com');
 define('CONTACT_PHONE_1', '+256 706 917 819');
 define('CONTACT_PHONE_2', '+256 784 917 811');
 define('CONTACT_WHATSAPP', '256706917819'); // digits only, international format, no leading +
 define('CONTACT_ADDRESS', 'Kulambiro Ring Road, Kampala, Uganda');
 
 define('SOCIAL_FACEBOOK', 'https://facebook.com/ngalomobilecyclingservice');
-define('SOCIAL_INSTAGRAM', 'https://instagram.com/ngalo_mobile_cycling_services');
-define('SOCIAL_TWITTER', 'https://twitter.com/ngalocyclingug');
+define('SOCIAL_INSTAGRAM', 'https://www.instagram.com/ngalo.cycling_123');
+define('SOCIAL_TWITTER', 'https://x.com/NgaloCyclingUg');
+define('SOCIAL_TIKTOK', 'https://www.tiktok.com/@ngalo.cycling.ug');
 
 define('BASE_PATH', '');
 

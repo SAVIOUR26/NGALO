@@ -13,7 +13,8 @@
             <div class="footer-social">
                 <a href="<?php echo SOCIAL_FACEBOOK; ?>" aria-label="Facebook" target="_blank" rel="noopener"><?php echo icon('facebook'); ?></a>
                 <a href="<?php echo SOCIAL_INSTAGRAM; ?>" aria-label="Instagram" target="_blank" rel="noopener"><?php echo icon('instagram'); ?></a>
-                <a href="<?php echo SOCIAL_TWITTER; ?>" aria-label="Twitter" target="_blank" rel="noopener"><?php echo icon('twitter'); ?></a>
+                <a href="<?php echo SOCIAL_TWITTER; ?>" aria-label="X (Twitter)" target="_blank" rel="noopener"><?php echo icon('twitter'); ?></a>
+                <a href="<?php echo SOCIAL_TIKTOK; ?>" aria-label="TikTok" target="_blank" rel="noopener"><?php echo icon('tiktok'); ?></a>
                 <a href="https://wa.me/<?php echo CONTACT_WHATSAPP; ?>" aria-label="WhatsApp" target="_blank" rel="noopener"><?php echo icon('whatsapp'); ?></a>
             </div>
         </div>
