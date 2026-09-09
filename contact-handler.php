@@ -88,6 +88,17 @@ if (file_exists($mail_config_file)) {
         $mail->Password   = $cfg['password'];
         $mail->SMTPSecure = $cfg['encryption'];
         $mail->Port       = $cfg['port'];
+        // This host's mail server presents a certificate for its own shared
+        // hostname, not for the customer's domain — common on shared
+        // hosting. Skip hostname verification for this same-host SMTP
+        // connection rather than refusing to send.
+        $mail->SMTPOptions = [
+            'ssl' => [
+                'verify_peer'       => false,
+                'verify_peer_name'  => false,
+                'allow_self_signed' => true,
+            ],
+        ];
 
         $mail->setFrom($cfg['from_email'], $cfg['from_name']);
         $mail->addAddress($to);

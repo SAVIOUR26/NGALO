@@ -4,12 +4,18 @@ DirectoryIndex index.php
 RewriteEngine On
 
 # --- Canonical URLs: send browsers from *.php URLs to the clean version ---
+# Skipped for POST requests: a 301 here turns a form POST into a GET and
+# silently drops the submitted data before it ever reaches the PHP script
+# (this bit the contact form — it posted to /contact-handler.php, got
+# redirected to /contact-handler, and arrived as an empty GET).
 
 # /index.php  ->  /
+RewriteCond %{REQUEST_METHOD} !POST
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php[?\s] [NC]
 RewriteRule ^index\.php$ / [R=301,L]
 
 # /any-page.php  ->  /any-page  (keeps any query string)
+RewriteCond %{REQUEST_METHOD} !POST
 RewriteCond %{THE_REQUEST} \s/+([^.\s]+)\.php[\s?] [NC]
 RewriteRule ^ /%1 [R=301,L]
 
