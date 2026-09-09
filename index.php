@@ -306,7 +306,9 @@ require_once __DIR__ . '/includes/header.php';
                     <label for="message">Message</label>
                     <textarea id="message" name="message" rows="5" required placeholder="Tell us what you need..."></textarea>
                 </div>
-                <input type="text" name="company" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <div class="hp-wrap" aria-hidden="true">
+                    <input type="text" name="hp_do_not_fill" tabindex="-1" autocomplete="off">
+                </div>
                 <button type="submit" class="btn btn-primary btn-block"><?php echo icon('send'); ?> Send Message</button>
             </form>
         </div>
