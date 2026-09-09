@@ -264,7 +264,7 @@ require_once __DIR__ . '/includes/header.php';
                 </div>
             </div>
 
-            <form class="contact-form reveal" action="/contact-handler.php" method="POST" id="contact-form">
+            <form class="contact-form reveal" action="/contact-handler" method="POST" id="contact-form">
                 <?php if ($contact_status === 'success'): ?>
                     <div class="form-alert form-alert-success"><?php echo icon('check'); ?> Thanks! Your message has been sent — we'll get back to you shortly.</div>
                 <?php elseif ($contact_status === 'error'): ?>
