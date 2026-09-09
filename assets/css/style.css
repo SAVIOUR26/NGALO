@@ -336,10 +336,11 @@ body.nav-is-open #back-to-top { opacity: 0; visibility: hidden; pointer-events: 
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--teal-500); background: var(--white); }
 .form-group textarea { resize: vertical; }
 .hp-field { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
-.form-alert { padding: 14px 16px; border-radius: var(--radius-sm); font-size: .9rem; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+.form-alert { padding: 14px 16px; border-radius: var(--radius-sm); font-size: .9rem; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
 .form-alert .icon { width: 18px; height: 18px; }
 .form-alert-success { background: var(--teal-100); color: var(--teal-700); }
 .form-alert-error { background: #fdecea; color: var(--danger); }
+.form-alert-detail { flex-basis: 100%; font-weight: 400; font-size: .78rem; opacity: .8; font-family: ui-monospace, monospace; word-break: break-word; }
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--navy-900); color: rgba(255,255,255,.72); padding-top: 70px; }
