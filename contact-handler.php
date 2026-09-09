@@ -43,8 +43,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     redirect_with_status('error');
 }
 
-// Honeypot field — real visitors never fill this in.
-if (!empty($_POST['company'])) {
+// Honeypot field — real visitors never fill this in (it's display:none).
+// Logged (best-effort) rather than silently swallowed, since a false
+// positive here looks identical to a real success to the visitor and was
+// previously impossible to tell apart from an actual send.
+if (!empty($_POST['hp_do_not_fill'])) {
+    log_mail_attempt('Honeypot triggered — treated as spam, no email sent. hp value: ' . substr($_POST['hp_do_not_fill'], 0, 100));
     redirect_with_status('success');
 }
 
