@@ -10,11 +10,21 @@
  */
 require_once __DIR__ . '/includes/config.php';
 
-use PHPMailer\PHPMailer\Exception as PHPMailerException;
 use PHPMailer\PHPMailer\PHPMailer;
 
-function redirect_with_status($status) {
-    header('Location: /?contact=' . $status . '#contact');
+/**
+ * Redirects back to the contact section with a status flag. On failure,
+ * $reason (a short technical detail — SMTP error, etc.) rides along in the
+ * URL so it's visible right on the page, regardless of whether the server
+ * lets PHP write log files (shared hosts vary, and mail-debug.log has
+ * proven unreliable to depend on alone).
+ */
+function redirect_with_status($status, $reason = null) {
+    $url = '/?contact=' . $status;
+    if ($status === 'error' && $reason) {
+        $url .= '&reason=' . urlencode(substr($reason, 0, 300));
+    }
+    header('Location: ' . $url . '#contact');
     exit;
 }
 
@@ -87,9 +97,14 @@ if (file_exists($mail_config_file)) {
         $mail->Body    = $body;
 
         $sent = $mail->send();
+        $reason = $sent ? null : ('SMTP: ' . $mail->ErrorInfo);
         log_mail_attempt('SMTP path: ' . ($sent ? 'sent OK' : 'send() returned false — ' . $mail->ErrorInfo));
-    } catch (PHPMailerException $e) {
+    } catch (\Throwable $e) {
+        // Catches PHPMailer's own exception as well as anything unexpected
+        // (a bad mail-config.php value, etc.) — a send attempt should never
+        // be able to produce anything but this graceful redirect.
         $sent = false;
+        $reason = 'SMTP exception: ' . $e->getMessage() . (isset($mail) ? ' | ' . $mail->ErrorInfo : '');
         log_mail_attempt('SMTP path: exception — ' . $e->getMessage() . (isset($mail) ? ' | ErrorInfo: ' . $mail->ErrorInfo : ''));
     }
 } else {
@@ -100,7 +115,8 @@ if (file_exists($mail_config_file)) {
         'X-Mailer: PHP/' . phpversion(),
     ];
     $sent = @mail($to, $mail_subject, $body, implode("\r\n", $headers));
+    $reason = $sent ? null : 'mail() fallback returned false (no includes/mail-config.php found on server)';
     log_mail_attempt('mail() fallback path (no includes/mail-config.php found): ' . ($sent ? 'returned true' : 'returned false'));
 }
 
-redirect_with_status($sent ? 'success' : 'error');
+redirect_with_status($sent ? 'success' : 'error', $reason ?? null);

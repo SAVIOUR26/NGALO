@@ -6,6 +6,7 @@ $page_title = SITE_NAME . ' | Bike Repairs, Sales, Rentals & Cycling Tours in Ka
 $meta_description = SITE_DESCRIPTION;
 
 $contact_status = $_GET['contact'] ?? '';
+$contact_reason = $_GET['reason'] ?? '';
 
 require_once __DIR__ . '/includes/header.php';
 ?>
@@ -267,7 +268,12 @@ require_once __DIR__ . '/includes/header.php';
                 <?php if ($contact_status === 'success'): ?>
                     <div class="form-alert form-alert-success"><?php echo icon('check'); ?> Thanks! Your message has been sent — we'll get back to you shortly.</div>
                 <?php elseif ($contact_status === 'error'): ?>
-                    <div class="form-alert form-alert-error">Something went wrong sending your message. Please try WhatsApp instead, or try again.</div>
+                    <div class="form-alert form-alert-error">
+                        Something went wrong sending your message. Please try WhatsApp instead, or try again.
+                        <?php if ($contact_reason !== ''): ?>
+                            <span class="form-alert-detail">Details: <?php echo htmlspecialchars($contact_reason); ?></span>
+                        <?php endif; ?>
+                    </div>
                 <?php endif; ?>
                 <div class="form-row">
                     <div class="form-group">
