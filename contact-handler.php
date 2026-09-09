@@ -12,6 +12,13 @@ require_once __DIR__ . '/includes/config.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 
+// TEMPORARY diagnostic hook — echoes the full SMTP conversation instead of
+// redirecting, so the actual server response can be inspected directly.
+// Only fires with this exact secret query param; safe to leave in briefly
+// but should be removed once the mail delivery issue is resolved.
+$diag_mode = (($_GET['diag'] ?? '') === 'ngalo-diag-7f3k29qz');
+$diag_transcript = '';
+
 /**
  * Redirects back to the contact section with a status flag. On failure,
  * $reason (a short technical detail — SMTP error, etc.) rides along in the
@@ -100,6 +107,13 @@ if (file_exists($mail_config_file)) {
             ],
         ];
 
+        if ($diag_mode) {
+            $mail->SMTPDebug = 3;
+            $mail->Debugoutput = function ($str, $level) use (&$diag_transcript) {
+                $diag_transcript .= $str . "\n";
+            };
+        }
+
         $mail->setFrom($cfg['from_email'], $cfg['from_name']);
         $mail->addAddress($to);
         $mail->addReplyTo($email, $name);
@@ -128,6 +142,15 @@ if (file_exists($mail_config_file)) {
     $sent = @mail($to, $mail_subject, $body, implode("\r\n", $headers));
     $reason = $sent ? null : 'mail() fallback returned false (no includes/mail-config.php found on server)';
     log_mail_attempt('mail() fallback path (no includes/mail-config.php found): ' . ($sent ? 'returned true' : 'returned false'));
+}
+
+if ($diag_mode) {
+    header('Content-Type: text/plain');
+    echo "sent: " . var_export($sent, true) . "\n";
+    echo "reason: " . ($reason ?? '(none)') . "\n\n";
+    echo "--- SMTP transcript ---\n";
+    echo $diag_transcript !== '' ? $diag_transcript : "(no transcript — mail-config.php not found, used mail() fallback)\n";
+    exit;
 }
 
 redirect_with_status($sent ? 'success' : 'error', $reason ?? null);
